@@ -1,0 +1,44 @@
+digraph YOLO_Arch {
+	fontsize=10 labelloc=t nodesep=0.4 rankdir=TB ranksep=0.6
+	subgraph cluster_row0 {
+		rank=same style=invis
+		n0 [label="0: Conv
+Params: 1856"]
+		n1 [label="1: Conv
+Params: 73984"]
+		n2 [label="2: C3k2
+Params: 173824"]
+		n3 [label="3: Conv
+Params: 590336"]
+		n4 [label="4: C3k2
+Params: 691712"]
+	}
+	subgraph cluster_row1 {
+		rank=same style=invis
+		n5 [label="5: Conv
+Params: 2360320"]
+		n6 [label="6: C3k2
+Params: 2234368"]
+		n7 [label="7: Conv
+Params: 2360320"]
+		n8 [label="8: C3k2
+Params: 2234368"]
+		n9 [label="9: C2PSA
+Params: 1455616"]
+	}
+	subgraph cluster_row2 {
+		rank=same style=invis
+		n10 [label="10: Classify
+Params: 666887"]
+	}
+	n0 -> n1
+	n1 -> n2
+	n2 -> n3
+	n3 -> n4
+	n4 -> n5
+	n5 -> n6
+	n6 -> n7
+	n7 -> n8
+	n8 -> n9
+	n9 -> n10
+}

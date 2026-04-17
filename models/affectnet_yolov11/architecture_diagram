@@ -1,0 +1,89 @@
+digraph YOLO_Arch {
+	fontsize=10 labelloc=t nodesep=0.4 rankdir=TB ranksep=0.6
+	subgraph cluster_row0 {
+		rank=same style=invis
+		n0 [label="0: Conv
+Params: 464"]
+		n1 [label="1: Conv
+Params: 4672"]
+		n2 [label="2: C3k2
+Params: 6640"]
+		n3 [label="3: Conv
+Params: 36992"]
+		n4 [label="4: C3k2
+Params: 26080"]
+	}
+	subgraph cluster_row1 {
+		rank=same style=invis
+		n5 [label="5: Conv
+Params: 147712"]
+		n6 [label="6: C3k2
+Params: 87040"]
+		n7 [label="7: Conv
+Params: 295424"]
+		n8 [label="8: C3k2
+Params: 346112"]
+		n9 [label="9: SPPF
+Params: 164608"]
+	}
+	subgraph cluster_row2 {
+		rank=same style=invis
+		n10 [label="10: C2PSA
+Params: 249728"]
+		n11 [label="11: Upsample
+Params: 0"]
+		n12 [label="12: Concat
+Params: 0"]
+		n13 [label="13: C3k2
+Params: 111296"]
+		n14 [label="14: Upsample
+Params: 0"]
+	}
+	subgraph cluster_row3 {
+		rank=same style=invis
+		n15 [label="15: Concat
+Params: 0"]
+		n16 [label="16: C3k2
+Params: 32096"]
+		n17 [label="17: Conv
+Params: 36992"]
+		n18 [label="18: Concat
+Params: 0"]
+		n19 [label="19: C3k2
+Params: 86720"]
+	}
+	subgraph cluster_row4 {
+		rank=same style=invis
+		n20 [label="20: Conv
+Params: 147712"]
+		n21 [label="21: Concat
+Params: 0"]
+		n22 [label="22: C3k2
+Params: 378880"]
+		n23 [label="23: Detect
+Params: 432232"]
+	}
+	n0 -> n1
+	n1 -> n2
+	n2 -> n3
+	n3 -> n4
+	n4 -> n5
+	n5 -> n6
+	n6 -> n7
+	n7 -> n8
+	n8 -> n9
+	n9 -> n10
+	n10 -> n11
+	n11 -> n12
+	n12 -> n13
+	n13 -> n14
+	n14 -> n15
+	n15 -> n16
+	n16 -> n17
+	n17 -> n18
+	n18 -> n19
+	n19 -> n20
+	n20 -> n21
+	n21 -> n22
+	n22 -> n23
+}
