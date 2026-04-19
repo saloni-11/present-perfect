@@ -41,7 +41,7 @@ Most people improving their presentation skills either practice alone with no fe
 
 ```
 ┌─────────────┐     HTTP POST      ┌──────────────────────────────────┐
-│   React UI  │ ──────────────────► │         Flask Backend            │
+│   React UI  │ ─────────────────► │         Flask Backend            │
 │             │ ◄── Socket.IO ──── │                                  │
 │  - Upload   │    (progress %)    │  ┌────────────────────────────┐  │
 │  - Report   │                    │  │   Whisper (background)     │  │
@@ -51,11 +51,11 @@ Most people improving their presentation skills either practice alone with no fe
                                    │  Producer thread → frame queue   │
                                    │       ↓                          │
                                    │  Consumer threads (batched):     │
-                                   │   ┌──────────┬────────┬───────┐  │
-                                   │   │ Emotion  │  Gaze  │ Pose  │  │
-                                   │   │ (YOLO)   │(Mesh+  │(Media │  │
-                                   │   │          │solvePnP│ Pipe) │  │
-                                   │   └──────────┴────────┴───────┘  │
+                                   │   ┌─────────┬─────────┬───────┐  │
+                                   │   │ Emotion │  Gaze   │ Pose  │  │
+                                   │   │ (YOLO)  │(Mesh+   │(Media │  │
+                                   │   │         │solvePnP)│ Pipe) │  │
+                                   │   └─────────┴─────────┴───────┘  │
                                    │       ↓                          │
                                    │  Per-second aggregation          │
                                    │       ↓                          │
@@ -105,7 +105,6 @@ The frontend displays: scores as a radar chart, per-second gaze as a directional
 ```bash
 cd webapi
 pip install -r requirements.txt
-pip install boto3  # required for audio mode; not yet in requirements.txt
 ```
 
 Create `webapi/.env`:
@@ -171,7 +170,7 @@ The trained `.pt` files are **not included** in this repository. The `models/` d
 
 The posture and pose tracking module uses MediaPipe Pose to extract body landmarks from each sampled video frame. Three separate signals are computed, all in the `movement_batch()` function in `webapi/app.py`:
 
-**Shoulder tilt detection** — Calculates the angle between left and right shoulder landmarks using `atan2`. Frames where the angle exceeds 7° → "Shoulders Tilted"; below that → "Shoulders Straight." Prototype: `Salmons workspace/posture_test1.py`.
+**Shoulder tilt detection** — Calculates the angle between left and right shoulder landmarks using `atan2`. Frames where the angle exceeds 7° → "Shoulders Tilted"; below that → "Shoulders Straight." Prototype: `prototypes/posture_test1.py`.
 
 **Hand gesture detection** — Measures the Euclidean distance between each wrist landmark and the midpoint of both hip landmarks. If either hand is >22% of the normalised frame width from the hip midpoint → "Gesturing"; otherwise → "Idle Hands."
 
@@ -179,7 +178,7 @@ The posture and pose tracking module uses MediaPipe Pose to extract body landmar
 
 Together these three signals account for **three of the six scored output dimensions** (shoulder, hands, movement).
 
-**AffectNet dataset sourcing** — The emotion model was trained on AffectNet (8 classes: Anger, Contempt, Disgust, Fear, Happy, Neutral, Sad, Surprise). Sourcing and preparing this dataset for the YOLO training format was part of this contribution. Dataset config: `Kavi's Workspace/data.yaml`; training artifacts in `models/`.
+**AffectNet dataset sourcing** — The emotion model was trained on AffectNet (8 classes: Anger, Contempt, Disgust, Fear, Happy, Neutral, Sad, Surprise). Sourcing and preparing this dataset for the YOLO training format was part of this contribution. Dataset config: `models/data.yaml`; training artifacts in `models/`.
 
 </details>
 

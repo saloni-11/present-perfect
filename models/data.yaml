@@ -1,0 +1,22 @@
+data: "D:\\UTS\\Semester 3\\Deep Learning\\Assignment 3\\PresentPerfect\\Kavi's Workspace\\YOLO_format"
+
+train: "D:\\UTS\\Semester 3\\Deep Learning\\Assignment 3\\PresentPerfect\\Kavi's Workspace\\YOLO_format/train/images"
+val: "D:\\UTS\\Semester 3\\Deep Learning\\Assignment 3\\PresentPerfect\\Kavi's Workspace\\YOLO_format/valid/images"
+test: "D:\\UTS\\Semester 3\\Deep Learning\\Assignment 3\\PresentPerfect\\Kavi's Workspace\\YOLO_format/test/images"
+
+nc: 8
+task: "detect"
+names:
+  [
+    "Anger",
+    "Contempt",
+    "Disgust",
+    "Fear",
+    "Happy",
+    "Neutral",
+    "Sad",
+    "Surprise",
+  ]
+
+# Network configuration (choose other variations if desired)
+network: "yolov8n"
