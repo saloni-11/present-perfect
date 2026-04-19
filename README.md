@@ -1,6 +1,6 @@
 # PresentPerfect
 
-A web app that analyzes video and audio recordings of presentations and gives scored, written feedback on delivery.
+A web app that analyses video and audio recordings of presentations and gives scored, written feedback on delivery.
 
 **People's Choice Award — UTS Tech Festival AI Showcase 2025**
 
