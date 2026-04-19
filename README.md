@@ -186,8 +186,8 @@ Together these three signals account for **three of the six scored output dimens
 
 ## Screenshots
 
-_To be added._
-
+![PresentPerfect Report](docs/present-perfect-example.png)
+*Sample report showing radar chart scores, emotion analysis, and more*
 ---
 
 ## License
